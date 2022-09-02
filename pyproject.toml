@@ -1,14 +1,14 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "bnot", "sendroid"]
 build-backend = "hatchling.build"
 
 [project]
 name = "bnot"
-version = "1.0b2"
+version = "1.0a1"
 authors = [
 	{name="bwilk315", email="bwilk315@onet.pl"}
 ]
-description = "Bartek's Notation manager"
+description = "Simple Client Server Communication"
 readme = "README.md"
 license = {file="LICENSE"}
 requires-python = ">=3.5"
@@ -19,4 +19,4 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/bwilk315/BarteksNotation"
+"Homepage" = "https://github.com/bwilk315/cliserc"
