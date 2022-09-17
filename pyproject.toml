@@ -1,14 +1,15 @@
 [build-system]
-requires = ["hatchling", "bnot", "sendroid"]
+requires = ["hatchling", "bnot"]
 build-backend = "hatchling.build"
 
 [project]
-name = "bnot"
-version = "1.0a1"
+name = "cliserc"
+version = "1.0.0a2"
+
 authors = [
 	{name="bwilk315", email="bwilk315@onet.pl"}
 ]
-description = "Simple Client Server Communication"
+description = "Simplex based client server communication"
 readme = "README.md"
 license = {file="LICENSE"}
 requires-python = ">=3.5"
