@@ -11,96 +11,96 @@ from cliserc.simplex import Simplex
 All members of _Simplex_ class are listed and described below:
 
 ##### Constants
-- <u>constant float **MIN_CONN_INTERVAL**</u>\
+- constant float **MIN_CONN_INTERVAL**\
 Minimum time interval in seconds between client disconnection and connection to a server assuring the proper work of both sides.
 
-- <u>constant int **RES_NULL**</u>\
+- constant int **RES_NULL**\
 Response type indicating the lack of response type in received data.
 
-- <u>constant int **RES_OK**</u>\
+- constant int **RES_OK**\
 Type of response included in incoming data if sender received lastly sent data properly.
 
-- <u>constant int **RES_EXIT**</u>\
+- constant int **RES_EXIT**\
 Response included in incoming data if sender wants to close connection.
 
 ##### Constructor parameters
-- <u>param string **host**</u>
+- param string **host**
 	- client\
 	IPv4 address of target server (local or global).
 	- server\
 	Address which will be binded with server.
 
-- <u>param int **port**</u>
+- param int **port**
 	- client\
 	Port of cliserc-based service running on the target server.
 	- server\
 	Port which will be forwarded to cliserc-based service running on server machine.
 
-- <u>param bool **is_server**</u>\
+- param bool **is_server**\
 	Should current instance of class act as server?
 
-- <u>kwarg function(_BNot_, _float_) -> _BNot_ **on_send** = lambda _resp_, _dt_: BNot({"response": Simplex.RES_OK})</u>\
+- kwarg function(_BNot_, _float_) -> _BNot_ **on_send** = lambda _resp_, _dt_: BNot({"response": Simplex.RES_OK})\
 Callback function taking two parameters from which first is the received data encoded in Bartek's Notation object and second is time in seconds since last receive operation. Learn more about Bartek's Notation by reading its [documentation](https://pypi.org/project/bnot/) on PyPI.
 
-- <u>kwarg function() -> None **on_connect** = lambda: None</u>\
+- kwarg function() -> None **on_connect** = lambda: None\
 Function invoked when host estabilishes connection with a remote host.
 
-- <u>kwarg function() -> None **on_refuse** = lambda: None</u>\
+- kwarg function() -> None **on_refuse** = lambda: None\
 Custom callback function called when remote host refuses a connection from current.
 
-- <u>kwarg function(_int_) -> None **on_exit** = lambda _code_: None</u>\
+- kwarg function(_int_) -> None **on_exit** = lambda _code_: None\
 Callback invoked when connection is finished, its only parameter is set to exit status code which indicates if exit occurred due user wish or some error.
 
-- <u>kwarg string **net_encoding** = "utf-8"</u>\
+- kwarg string **net_encoding** = "utf-8"\
 Encoding used to encode data which is then sent over network.
 
-- <u>kwarg float **timeout** = 4.0</u>\
+- kwarg float **timeout** = 4.0\
 Maximum time in seconds for current host to wait for connection, after this time host will not continue trying to connect, if process occurs in other thread it will be closed.
 
-- <u>kwarg int **buff_size** = 128</u>\
+- kwarg int **buff_size** = 128\
 Amount of bytes describing communication buffer length. Length of data encoded into Bartek's Notation which is then sent over network can not exceed this amount, otherwise exceeding part of data will not be sent thus whole data will be broken.
 
-- <u>kwarg bool **show_log** = False</u>\
+- kwarg bool **show_log** = False\
 If set to true, useful and readable information about everything happening in the cliserc-based network communication.
 
 ##### Class members
-- <u>member tuple[2] **address**</u>\
+- member tuple[2] **address**\
 Tuple containing two elements which are host IPv4 address and cliserc-based service port respectively, it forms a network socket ...
-	- client
+	- client\
 	... to which client will try to connect. 
-	- server
+	- server\
 	... which server will be bonded with.
 
-- <u>member int **sent_bytes**</u>\
+- member int **sent_bytes**\
 	Total amount of sent bytes during the current connection.
 
-- <u>member int **recv_bytes**</u>\
+- member int **recv_bytes**\
 	Total amount of received bytes during the current connection.
 
-- <u>member bool **listening**</u>
-	- server
+- member bool **listening**
+	- server\
 	Whether server is ready and listening for connection.
 
-- <u>member bool **connected**</u>\
+- member bool **connected**\
 	Tells if the current host is connected with a remote one.
 
-- <u>member function(bool) -> bool **connect**</u>
-	- client
+- member function(bool) -> bool **connect**
+	- client\
 	Tries to connect to the server with _address_ socket. The only parameter defines if separate thread should be created for connection process (then current will be free).
 
-- <u>member function() -> bool **start**</u>
-	- server
+- member function() -> bool **start**
+	- server\
 	Tries to bind server with IPv4 address _host_ and start cliserc-based service on port _port_. Returns whether everything went well during execution of function.
 
-- <u>member function(bool) -> bool **wait**</u>
-	- server
+- member function(bool) -> bool **wait**
+	- server\
 	Waits for incoming connection and starts client-handling loop as soon as it estabilishes the connection if there is no active one. If no connection come in _timeout_ seconds function terminates. The only parameter specifies if separate thread should be created for waiting process (current will be free). Returns if everything went well.
 
-- <u>member function() -> None **close**</u>
+- member function() -> None **close**
 	Closes the connection with remote host by ...
-	- client
+	- client\
 	... setting WOD (wish of disconnection) flag, server will then read it and call its version of this function.
-	- server
+	- server\
 	... closing all sockets and terminating client handler (if thread for it was created).
 
 ### Client example
